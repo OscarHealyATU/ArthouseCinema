@@ -1,0 +1,11 @@
+.temporary{
+    border: solid 2px red;
+    padding: 1.5em 2em;
+    margin: 2em auto;
+}
+.db_error{
+    max-width: 65%;
+    padding: 20px;
+    margin: 5px auto;
+    border: dashed 3px red;
+  }

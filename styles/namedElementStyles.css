@@ -1,0 +1,55 @@
+
+.navbar {
+    background-color: var(--color2);
+    padding: 10px 20px;
+  }
+
+  /* Unordered list styling */
+  .navbar ul {
+    list-style-type: none;
+    display: flex;
+  }
+
+  /* Individual list item styling */
+  .navbar ul li {
+    padding: 0 15px;
+  }
+
+  /* Link styling */
+  .navbar ul li a {
+    text-decoration: none;
+    color: var(--light);
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+
+  .navbar ul li a:hover {
+    color: var(--color1);
+  }
+  #screeningBar{
+    background-color: var(--color1);
+    border-top: solid 2px var(--light);
+    padding: 15px;
+    opacity: 0.8;
+    transition: 500ms;
+  }
+  #screeningBar:hover{
+    opacity: 1;
+    padding: 20px 15px;
+    transition: 50ms;
+  }
+  #screeningBar select{ 
+    background-color: var(--light);
+    padding: 5px 20px;
+    border: none;
+    border-bottom: solid 2px var(--color2);
+    border-radius: 10px 10px 0px 0px;
+  }
+  
+  
+  
+  #profileName{
+    color: var(--color1);
+  }
+
+  
