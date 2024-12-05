@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <H1 id="logo">Arthouse Cinema</H1>
+<a href="index.php" id="logo"><h1>Arthouse Cinema</h1></a>
     <nav class="navbar">
         <ul>
             <li><a href="index.php">Home</a></li>
