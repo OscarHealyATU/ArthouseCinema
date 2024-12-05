@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/namedElementStyles.css">
+    <link rel="stylesheet" href="styles/troubleshootStyle.css">
+    
+
+    <title>Log in</title>
+</head>
+
+<body>
+    <H1 id="logo">Arthouse Cinema</H1>
+    <nav class="navbar">
+        <ul>
+            <li><a href="tickets.php"><strong>Buy</strong> Tickets</a></li>
+            <li><a href="movie_list.php">Screenings</a></li>
+            <li><a href="merch.php">Merchandise</li>
+            <li> <a href="login.html" id="login"><strong>Log in</strong></a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="temporary">
+            <h2>Login Page</h2>
+            <a href="index.php">click back to home</a>
+            <br>
+            <a href="signUp.html">New? Sign up as a member here</a>
+        </div>
+        <!-- form -->
+        <form id="userLogin">
+            <label for="usernameInput">Username:</label><br>
+            <input type="text" name="usernameInput" id="usernameInput" required>
+            <br>
+            <label for="passwordInput">Password:</label><br>
+            <input type="text" name="passwordInput" id="passwordInput" required>
+            <br>
+            <label for="submit"></label>
+            <input type="submit" name="submit" id="submit" value="Log in">
+        </form>
+        <div class="temporary" id="loginResponse"></div>
+    </main>
+<script>
+    // updates page without full reload
+    
+        $(document).ready(function () {
+        $('#userLogin').on('submit', function (event) {
+            // prevents form from loading page traditionally
+            event.preventDefault(); 
+
+            $.ajax({
+                type: 'POST',
+                url: 'login.php',
+                data: $(this).serialize(),
+                success: function (response) {
+                    $('#loginResponse').html(response); // Update the response div with the result
+                },
+                error: function (xhr, status, error) {
+                    $('#loginResponse').html('Error: ' + error); // Display error message
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+
+</html>
