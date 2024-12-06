@@ -115,7 +115,7 @@
                         while ($row = $select_result->fetch_assoc()) {
                             $option = $row[$db_item];
                              $id = $row["film_id"];
-                            echo '<option label="' . $id . '">'. $option . "</option>";
+                            echo '<option>'. $option . "</option>";
                         }
                     } else {
                         echo '<option class = "db_error">Something went wrong</option>';
