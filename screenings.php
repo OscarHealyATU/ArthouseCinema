@@ -56,23 +56,23 @@
         <ul>
             <li>
                 <!-- chose movie  -->
-                <select name="movieSelection" id="movieSelection">
-                    <option value="">Choose Movie</option>
+                <select name="movieSelection" id="movieSelection" onclick="updateListings()">
+                    <option value="All">Choose Movie</option>
                     <!-- creates list of film titles  -->
                     <?php FillOptions($film_title_result, "title"); ?>
                 </select>
             </li>
             <li>
                 <!-- choose time  -->
-                <select name="timeSelection" id="timeSelection">
-                    <option value="">Choose time</option>
+                <select name="timeSelection" id="timeSelection" onclick="updateListings()">
+                    <option value="All">Choose time</option>
                     <?php FillOptions($film_date_result, "screening_date"); ?>
                 </select>
             </li>
             <li>
                 <!-- choose screen  -->
-                <select name="screenSelection" id="screenSelection">
-                    <option value="">Choose screen</option>
+                <select name="screenSelection" id="screenSelection" onclick="updateListings()">
+                    <option value="All">Choose screen</option>
                     <?php FillOptions($film_location_result, "location"); ?>
 
                 </select>
@@ -91,7 +91,7 @@
                 <?php
                 // sql query for main table results
                 $sql_film_times = " select screenings.*, films.title as title 
-                                    from screenings where ".$movie."
+                                    from screenings
                                     join films on screenings.film_id = films.film_id
                                     order by title";
                 $result = $conn->query($sql_film_times); // continues where ever table is
@@ -108,13 +108,14 @@
                 } else {
                     echo '<div class="db_error"><p>No records found.</p></div>';
                 }
-
+                    // fills select drop downs 
                 function FillOptions($select_result, $db_item)
                 {
                     if ($select_result->num_rows > 0) {
                         while ($row = $select_result->fetch_assoc()) {
                             $option = $row[$db_item];
-                            echo "<option value='" . $row["film_id"] . "'>" . $option . "</option>";
+                             $id = $row["film_id"];
+                            echo '<option label="' . $id . '">'. $option . "</option>";
                         }
                     } else {
                         echo '<option class = "db_error">Something went wrong</option>';
@@ -135,7 +136,17 @@
         <p>footer</p>
     </footer>
     <script>
-        
+        function updateListings(){
+            var selectedFilm =document.getElementById("movieSelection").value;
+            console.log("film title: " , selectedFilm);
+            var selectedFilm_id =document.getElementById("movieSelection").getAttribute("data-id");
+            console.log("film id: " , selectedFilm_id);
+            // var selectedTime =document.getElementById("timeSelection").value;
+            // console.log("time selection: " + timeSelection);
+            // var selectedScreen =document.getElementById("screenSelection").value;
+            // console.log("screen selection: " + screenSelection);
+
+        }
     </script>
 </body>
 
