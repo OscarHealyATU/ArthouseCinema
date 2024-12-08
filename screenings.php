@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="styles/troubleshootStyle.css">
     <?php require 'connectToDB.php';
     session_start();
+    
+    $film_id = "1";
     // sql queries for lists
     // movie
     $sql_film_title = "select distinct title, film_id from films";
     // date & time
     $sql_film_date = "select distinct screening_date, film_id from screenings order by screening_date";
+    $sql_film_date_by_id = "select distinct screening_date from screenings where film_id = $film_id";
     // film screen (location)
     $sql_film_location = "select distinct location from screenings";
 
@@ -21,9 +24,6 @@
     $film_title_result = $conn->query($sql_film_title);
     $film_date_result = $conn->query($sql_film_date);
     $film_location_result = $conn->query($sql_film_location);
-
-
-
 
     ?>
     <title>Screen Times</title>
@@ -37,7 +37,6 @@
             <li><a href="tickets.php"><strong>Buy</strong> Tickets</a></li>
             <li><a href="screenings.php">Screenings</a></li>
             <li><a href="merch.php">Merchandise</li>
-
             <?php
             if (isset($_SESSION['username'])) {
 
@@ -113,9 +112,12 @@
                 {
                     if ($select_result->num_rows > 0) {
                         while ($row = $select_result->fetch_assoc()) {
-                            $option = $row[$db_item];
-                             $id = $row["film_id"];
-                            echo '<option>'. $option . "</option>";
+                            if($db_item === "title"){
+                                echo "<option>".$row["film_id"]. ". " .$row[$db_item] . "</option>";    
+                            }else if($db_item === "screening_date"){
+                                echo "<option>".date_format(date_create($row[$db_item])," H:i D d")."</option>";    
+                            }
+                            
                         }
                     } else {
                         echo '<option class = "db_error">Something went wrong</option>';
@@ -137,10 +139,8 @@
     </footer>
     <script>
         function updateListings(){
-            var selectedFilm =document.getElementById("movieSelection").value;
-            console.log("film title: " , selectedFilm);
-            var selectedFilm_id =document.getElementById("movieSelection").getAttribute("data-id");
-            console.log("film id: " , selectedFilm_id);
+            var selectedFilm =document.getElementById("movieSelection").value.split(". ", 2);
+            console.log(selectedFilm);
             // var selectedTime =document.getElementById("timeSelection").value;
             // console.log("time selection: " + timeSelection);
             // var selectedScreen =document.getElementById("screenSelection").value;
