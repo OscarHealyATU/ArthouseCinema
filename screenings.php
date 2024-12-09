@@ -101,7 +101,7 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td class='tdButton'><a href='filmDetails.php'>select</a></td>";
+                        echo "<td class='tdButton'><a onclick='filmDetails(".$row['film_id'].")'>select</a></td>";
                         echo "<td>"
                             . $row["title"] . "</td><td>"
                             . $row["location"] . "</td><td>"
@@ -143,6 +143,9 @@
         <p>footer</p>
     </footer>
     <script>
+        function filmDetails(chosenMovie){
+          alert("create session variabes for film details");
+        }
         function updateListings() {
             var selectedFilm = document.getElementById("movieSelection").value.split(". ", 2);
             var selectedTime = document.getElementById("timeSelection").value;

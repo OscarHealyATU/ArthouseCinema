@@ -41,7 +41,7 @@ if ($result && $result->num_rows > 0) {
 while($row = mysqli_fetch_array($result)) {
     
   echo "<tr>";
-  echo "<td class='tdButton'><a href='filmDetails.php'>select</a></td>";
+  echo "<td class='tdButton'><a href='x\a.php'>select</a></td>";
   echo "<td>" . $row['title'] . "</td>";
   echo "<td>" .  date_format(date_create($row["screening_date"]), "l H:i (M d)") . "</td>";
   echo "<td>" . $row['location'] . "</td>";
