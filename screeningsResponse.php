@@ -31,9 +31,9 @@ $sql_film_times = "select screenings.*, films.title as title
 $result = $conn->query($sql_film_times);
 
 echo "<table>
-<tr><th colspan='3' class='tableheadingAlt'>Selected Screenings</th></tr>
+<tr><th colspan='4' class='tableheadingAlt'>Selected Screenings</th></tr>
 <tr>
-<th>Film</th>
+<th colspan='2' >Film</th>
 <th>Time</th>
 <th>Screen</th>
 </tr>";
@@ -41,13 +41,14 @@ if ($result && $result->num_rows > 0) {
 while($row = mysqli_fetch_array($result)) {
     
   echo "<tr>";
+  echo "<td class='tdButton'><a href='filmDetails.php'>select</a></td>";
   echo "<td>" . $row['title'] . "</td>";
   echo "<td>" .  date_format(date_create($row["screening_date"]), "l H:i (M d)") . "</td>";
   echo "<td>" . $row['location'] . "</td>";
   echo "</tr>";
 }
 }else{
-    echo"<tr><td colspan='3'>No results with current selection</td></tr>";
+    echo"<tr><td colspan='4'>No results with current selection</td></tr>";
 }
 echo "</table>";
 

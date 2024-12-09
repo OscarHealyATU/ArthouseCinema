@@ -80,9 +80,9 @@
     <main>
         <div id="listScreenings"></div>
         <table>
-            <tr><th colspan="3" class="tableheadingAlt">All Screenings</th></tr>
+            <tr><th colspan="4" class="tableheadingAlt">All Screenings</th></tr>
             <tr>
-                <th>Film</th>
+                <th colspan="2">Film</th>
                 <th>Screen</th>
                 <th>time</th>
 
@@ -101,6 +101,7 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
+                        echo "<td class='tdButton'><a href='filmDetails.php'>select</a></td>";
                         echo "<td>"
                             . $row["title"] . "</td><td>"
                             . $row["location"] . "</td><td>"
