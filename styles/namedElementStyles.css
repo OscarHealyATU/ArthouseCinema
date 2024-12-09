@@ -40,12 +40,12 @@
   width: 8em;
 
 }
-#userLogin{
+#userLogin, #userSignUp{
   width:40%;
   min-width: 400px;
   min-height: 400px;
 }
-.loginOrSignup h2, .loginOrSignup a{
+.loginOrSignup h2, .loginOrSignup p{
   width: 100%;
   text-align: center;
   margin: auto;

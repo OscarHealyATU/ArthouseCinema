@@ -22,27 +22,29 @@
         </ul>
     </nav>
     <main>
-        <div class="temporary">
-            <h2>Sign Up Page</h2>
-            <a href="index.php">click back to home</a>
-            <br>
-            <a href="login.html">Not new? Sign up as a member here</a>
-        </div>
+       
         <!-- form -->
         <form id="userSignUp">
-            <label for="usernameInput">Username:</label><br>
+            <div class="loginOrSignup">
+                <h2>Sign Up Page</h2>
+                <a href="index.php"><p>click back to home</p></a>
+                
+                <a href="login.html"><p>Not new? Sign up as a member here</p></a>
+            </div>
+
+            <label for="usernameInput">Username:</label>
             <input type="text" name="usernameInput" id="usernameInput" required>
-            <br>
-            <label for="emailInput">Email:</label><br>
+            
+            <label for="emailInput">Email:</label>
             <input type="email" name="emailInput" id="emailInput" required>
-            <br>
-            <label for="passwordInput">Password:</label><br>
+            
+            <label for="passwordInput">Password:</label>
             <input type="text" name="passwordInput" id="passwordInput" required>
-            <br>
+            
             <label for="submit"></label>
             <input type="submit" name="submit" id="submit" value="Sign up">
         </form>
-        <div class="temporary" id="signUpResponse"></div>
+        <div id="signUpResponse"></div>
     </main>
 <script>
     
