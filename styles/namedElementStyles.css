@@ -42,14 +42,23 @@
     background-color: var(--light);
     padding: 5px 20px;
     border: none;
-    border-bottom: solid 2px var(--color2);
+    border-bottom: dashed 2px var(--color2);
     border-radius: 10px 10px 0px 0px;
   }
   
-  
+  .tableheadingAlt{
+    background-color: var(--color3);
+    color: var(--light);
+    border-bottom: 2px solid var(--light);
+    border-top: 3px solid var(--color2);
+  }
   
   #profileName{
     color: var(--color1);
+  }
+  #listScreenings{
+    width: 100%;
+    padding: 0  ;
   }
 
   

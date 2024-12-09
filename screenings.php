@@ -78,8 +78,9 @@
         </ul>
     </nav>
     <main>
-        <div id="listScreenings"></div>
+        <div id="listScreenings" class="temporary"></div>
         <table>
+            <tr><th colspan="3" class="tableheadingAlt">All Screenings</th></tr>
             <tr>
                 <th>Film</th>
                 <th>Screen</th>

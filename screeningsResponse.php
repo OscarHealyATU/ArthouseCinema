@@ -31,6 +31,7 @@ $sql_film_times = "select screenings.*, films.title as title
 $result = $conn->query($sql_film_times);
 
 echo "<table>
+<tr><th colspan='3' class='tableheadingAlt'>All Screenings</th></tr>
 <tr>
 <th>Film</th>
 <th>Time</th>

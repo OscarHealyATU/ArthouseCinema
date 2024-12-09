@@ -4,7 +4,8 @@
     box-sizing: border-box;
   }
 :root{
-    --color1:#a682ed;
+  --color1:#a682ed;
+  --color3:#5d27c7;
     --color2:#333;
     --light:#ddd;
     --offwhite: #eee;
