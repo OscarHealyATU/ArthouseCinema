@@ -78,7 +78,7 @@
         </ul>
     </nav>
     <main>
-        <div id="listScreenings" class="temporary"></div>
+        <div id="listScreenings"></div>
         <table>
             <tr><th colspan="3" class="tableheadingAlt">All Screenings</th></tr>
             <tr>
@@ -105,6 +105,7 @@
                             . $row["title"] . "</td><td>"
                             . $row["location"] . "</td><td>"
                             . date_format(date_create($row["screening_date"]), "l H:i (M d)") . "</td>";
+                            
                         echo "</tr>";
                     }
                 } else {

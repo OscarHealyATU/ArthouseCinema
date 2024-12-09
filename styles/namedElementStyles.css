@@ -30,14 +30,12 @@
     background-color: var(--color1);
     border-top: solid 2px var(--light);
     padding: 15px;
-    opacity: 0.8;
-    transition: 500ms;
-  }
-  #screeningBar:hover{
-    opacity: 1;
+    opacity: .8;
+    box-shadow: 0px 2px 2px 0px var(--color2);
     
-    transition: 50ms;
+    
   }
+
   #screeningBar select{ 
     background-color: var(--light);
     padding: 5px 20px;
@@ -53,12 +51,15 @@
     border-top: 3px solid var(--color2);
   }
   
+  
   #profileName{
     color: var(--color1);
   }
   #listScreenings{
     width: 100%;
     padding: 0  ;
+    border-bottom: solid 2px var(--color2);
+    
   }
 
   
