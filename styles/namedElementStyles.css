@@ -35,7 +35,7 @@
   }
   #screeningBar:hover{
     opacity: 1;
-    padding: 20px 15px;
+    
     transition: 50ms;
   }
   #screeningBar select{ 

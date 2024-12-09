@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/troubleshootStyle.css">
     <?php require 'connectToDB.php';
     session_start();
-    
+
     $film_id = "1";
     // sql queries for lists at top of page
     // movie, date & time, & film  screen (location)
@@ -27,7 +27,9 @@
 </head>
 
 <body>
-<a href="index.php" id="logo"><h1>Arthouse Cinema</h1></a>
+    <a href="index.php" id="logo">
+        <h1>Arthouse Cinema</h1>
+    </a>
     <nav class="navbar">
         <ul>
             <li><a href="index.php">Home</a></li>
@@ -53,7 +55,7 @@
             <li>
                 <!-- chose movie  -->
                 <select name="movieSelection" id="movieSelection" onchange="updateListings(1)">
-                    <option value="All">Choose Movie</option>
+                    <option value="">Choose Movie</option>
                     <!-- creates list of film titles  -->
                     <?php FillOptions($film_title_result, "title"); ?>
                 </select>
@@ -61,14 +63,14 @@
             <li>
                 <!-- choose time  -->
                 <select name="timeSelection" id="timeSelection" onchange="updateListings(2)">
-                    <option value="All">Choose time</option>
+                    <option value="">Choose time</option>
                     <?php FillOptions($film_date_result, "screening_date"); ?>
                 </select>
             </li>
             <li>
                 <!-- choose screen  -->
                 <select name="screenSelection" id="screenSelection" onchange="updateListings(3)">
-                    <option value="All">Choose screen</option>
+                    <option value="">Choose screen</option>
                     <?php FillOptions($film_location_result, "location"); ?>
 
                 </select>
@@ -76,6 +78,7 @@
         </ul>
     </nav>
     <main>
+        <div id="listScreenings"></div>
         <table>
             <tr>
                 <th>Film</th>
@@ -86,11 +89,11 @@
             <tr>
                 <?php
                 // sql query for main table results
-                $variable__where_clause = " ";
-                    $sql_film_times = " select screenings.*, films.title as title  
+                
+                $sql_film_times = " select screenings.*, films.title as title  
                                         from screenings 
                                         join films on screenings.film_id = films.film_id
-                                        $variable__where_clause
+                                        
                                         order by title";
                 $result = $conn->query($sql_film_times); // continues where ever table is
                 
@@ -106,18 +109,18 @@
                 } else {
                     echo '<div class="db_error"><p>No records found.</p></div>';
                 }
-                    // fills select drop downs 
+                // fills select drop downs 
                 function FillOptions($select_result, $db_item)
                 {
                     if ($select_result->num_rows > 0) {
                         while ($row = $select_result->fetch_assoc()) {
-                            if($db_item === "title"){
-                                echo "<option>".$row["film_id"]. ". " .$row[$db_item] . "</option>";    
-                            }else if($db_item === "screening_date"){
-                                echo "<option>".date_format(date_create($row[$db_item])," H:i D d")."</option>";    
-                            }else if($db_item === "location"){
-                                echo "<option>".$row["location"]. "</option>";
-                            }   
+                            if ($db_item === "title") {
+                                echo "<option>" . $row["film_id"] . ". " . $row[$db_item] . "</option>";
+                            } else if ($db_item === "screening_date") {
+                                 echo "<option value='$row[$db_item]'>" . date_format(date_create($row[$db_item]), " H:i D d") . "</option>";
+                            } else if ($db_item === "location") {
+                                echo "<option>" . $row["location"] . "</option>";
+                            }
                         }
                     } else {
                         echo '<option class = "db_error">Something went wrong</option>';
@@ -137,15 +140,25 @@
         <p>footer</p>
     </footer>
     <script>
-        function updateListings(){
-             var selectedFilm =document.getElementById("movieSelection").value.split(". ", 2);
-             var selectedTime =document.getElementById("timeSelection").value;
-             var selectedScreen =document.getElementById("screenSelection").value;
-            
-            console.log(selectedFilm + " " + selectedTime + " " + selectedScreen + " " );
-            
+        function updateListings() {
+            var selectedFilm = document.getElementById("movieSelection").value.split(". ", 2);
+            var selectedTime = document.getElementById("timeSelection").value;
+            var selectedScreen = document.getElementById("screenSelection").value;
 
+            console.log(selectedFilm[0] + " " + selectedTime + " " + selectedScreen + " ");
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "screeningsResponse.php", true);
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("listScreenings").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.send("titleValue=" + selectedFilm[0] + "&timeValue=" + selectedTime + "&screenValue=" + selectedScreen);
         }
+
+        
     </script>
 </body>
 
