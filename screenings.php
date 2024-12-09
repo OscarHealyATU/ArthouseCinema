@@ -11,13 +11,10 @@
     session_start();
     
     $film_id = "1";
-    // sql queries for lists
-    // movie
+    // sql queries for lists at top of page
+    // movie, date & time, & film  screen (location)
     $sql_film_title = "select distinct title, film_id from films";
-    // date & time
     $sql_film_date = "select distinct screening_date, film_id from screenings order by screening_date";
-    $sql_film_date_by_id = "select distinct screening_date from screenings where film_id = $film_id";
-    // film screen (location)
     $sql_film_location = "select distinct location from screenings";
 
     // get results from database
@@ -55,7 +52,7 @@
         <ul>
             <li>
                 <!-- chose movie  -->
-                <select name="movieSelection" id="movieSelection" onclick="updateListings()">
+                <select name="movieSelection" id="movieSelection" onchange="updateListings(1)">
                     <option value="All">Choose Movie</option>
                     <!-- creates list of film titles  -->
                     <?php FillOptions($film_title_result, "title"); ?>
@@ -63,14 +60,14 @@
             </li>
             <li>
                 <!-- choose time  -->
-                <select name="timeSelection" id="timeSelection" onclick="updateListings()">
+                <select name="timeSelection" id="timeSelection" onchange="updateListings(2)">
                     <option value="All">Choose time</option>
                     <?php FillOptions($film_date_result, "screening_date"); ?>
                 </select>
             </li>
             <li>
                 <!-- choose screen  -->
-                <select name="screenSelection" id="screenSelection" onclick="updateListings()">
+                <select name="screenSelection" id="screenSelection" onchange="updateListings(3)">
                     <option value="All">Choose screen</option>
                     <?php FillOptions($film_location_result, "location"); ?>
 
@@ -89,10 +86,12 @@
             <tr>
                 <?php
                 // sql query for main table results
-                $sql_film_times = " select screenings.*, films.title as title 
-                                    from screenings
-                                    join films on screenings.film_id = films.film_id
-                                    order by title";
+                $variable__where_clause = " ";
+                    $sql_film_times = " select screenings.*, films.title as title  
+                                        from screenings 
+                                        join films on screenings.film_id = films.film_id
+                                        $variable__where_clause
+                                        order by title";
                 $result = $conn->query($sql_film_times); // continues where ever table is
                 
                 if ($result->num_rows > 0) {
@@ -116,8 +115,9 @@
                                 echo "<option>".$row["film_id"]. ". " .$row[$db_item] . "</option>";    
                             }else if($db_item === "screening_date"){
                                 echo "<option>".date_format(date_create($row[$db_item])," H:i D d")."</option>";    
-                            }
-                            
+                            }else if($db_item === "location"){
+                                echo "<option>".$row["location"]. "</option>";
+                            }   
                         }
                     } else {
                         echo '<option class = "db_error">Something went wrong</option>';
@@ -127,7 +127,6 @@
 
                 // Close the connection
                 $conn->close();
-
                 ?>
             </tr>
         </table>
@@ -139,12 +138,12 @@
     </footer>
     <script>
         function updateListings(){
-            var selectedFilm =document.getElementById("movieSelection").value.split(". ", 2);
-            console.log(selectedFilm);
-            // var selectedTime =document.getElementById("timeSelection").value;
-            // console.log("time selection: " + timeSelection);
-            // var selectedScreen =document.getElementById("screenSelection").value;
-            // console.log("screen selection: " + screenSelection);
+             var selectedFilm =document.getElementById("movieSelection").value.split(". ", 2);
+             var selectedTime =document.getElementById("timeSelection").value;
+             var selectedScreen =document.getElementById("screenSelection").value;
+            
+            console.log(selectedFilm + " " + selectedTime + " " + selectedScreen + " " );
+            
 
         }
     </script>
