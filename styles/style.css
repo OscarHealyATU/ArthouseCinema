@@ -33,14 +33,26 @@ body, body a {
     position: relative;
     bottom: 0;
   }
-
+input, label{
+margin: 1em auto;
+min-width: 90%;
+padding: .5em;
+}
+input[type = submit]{
+  margin-top: 2em;
+  color: var(--light);
+  background-color: var(--color3);
+  border: solid 2px var(--color1);
+  border-radius: 8px;
+  padding: .7em;
+}
   
   h1 {
     padding: 20px;
     color: var(--color1);
     background-color: var(--background_color);
   }
-  table{
+  table, form{
     margin: 20px auto;
     padding: 20px;
     border: solid 2px white;
@@ -59,9 +71,7 @@ body, body a {
     background-color: var(--color1);
     border-bottom: solid 2px var(--color2);
   }
-  tr{
-
-  }
+  
  tr:nth-child(even){
   background-color: white;
  }

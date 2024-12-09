@@ -40,6 +40,16 @@
   width: 8em;
 
 }
+#userLogin{
+  width:40%;
+  min-width: 400px;
+  min-height: 400px;
+}
+.loginOrSignup h2, .loginOrSignup a{
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
 
 .tdButton a {
   padding: 0.5em 2em;

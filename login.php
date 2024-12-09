@@ -20,10 +20,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $row = $result->fetch_assoc();
         if ($password_in === $row["password_hash"]) {
             $_SESSION["username"] = $username_in;
-            // logged in, redirects to home page + a console log
-            echo "<script>console.log('log in successful');alert('todo: emplement hashing');</script>";
-            echo "<script>console.log('".$_SESSION["username"] ."');alert('".$_SESSION["username"] ."');</script>";
-            //  header("location: index.php");
             echo "<script>document.location.assign('index.php')</script>";
         }else { 
             echo "Incorrect Password";

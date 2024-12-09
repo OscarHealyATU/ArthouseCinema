@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/namedElementStyles.css">
     <link rel="stylesheet" href="styles/troubleshootStyle.css">
-    
-
     <title>Log in</title>
 </head>
 
@@ -24,24 +22,25 @@
         </ul>
     </nav>
     <main>
-        <div class="temporary">
+        <form id="userLogin">
+        <div class="loginOrSignup">
             <h2>Login Page</h2>
-            <a href="index.php">click back to home</a>
+            <a href="index.php"><p>click back to home</p></a>
             <br>
-            <a href="signUp.html">New? Sign up as a member here</a>
+            <a href="signUp.html"><p>New? Sign up as a member here</p></a>
         </div>
         <!-- form -->
-        <form id="userLogin">
-            <label for="usernameInput">Username:</label><br>
+        
+            <label for="usernameInput">Username:</label>
             <input type="text" name="usernameInput" id="usernameInput" required>
-            <br>
-            <label for="passwordInput">Password:</label><br>
+            
+            <label for="passwordInput">Password:</label>
             <input type="text" name="passwordInput" id="passwordInput" required>
-            <br>
+            
             <label for="submit"></label>
             <input type="submit" name="submit" id="submit" value="Log in">
         </form>
-        <div class="temporary" id="loginResponse"></div>
+        <div id="loginResponse"></div>
     </main>
 <script>
     // updates page without full reload
