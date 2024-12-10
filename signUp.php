@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Database connection
     require "connectToDB.php";
-    echo"<script>alert('checks if username or password exists')</script>";
     $sql = "SELECT username, email FROM Users WHERE username=? or email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username_in, $email_in);
@@ -22,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     while ($row = $result_username->fetch_assoc()) {
         
         if ($row['username'] == $username_in) {
-            echo"<script>alert('".$username."')</script>";
             $usernameExists = true;
         }
         if ($row['email'] === $email_in) {
@@ -38,9 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Execute the statement
     if ($stmt->execute()) {
-        echo "User registered successfully!<br>";
-        echo "Username : {$username_in}<br>";
-        echo "Email : {$email_in}<br>";
+        echo "<p>User registered successfully! page will reload shortly...</p>";
+        echo "<p>Username : {$username_in}</p>";
+        echo "<p>Email : {$email_in}</p>";
+        echo "<script>window.setTimeout(reload,3000);</script>";
     } else {
         echo "Statement execute Error: " . $stmt->error;
     }
@@ -49,10 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     else {
         if($usernameExists) {
-        echo "The username already exists<br>";
+            echo "Username or email already exists";
     }
         if($emailExists){
-        echo "The email address has already been used<br>";
+            echo "Username or email already exists";
     }
     }
      // Close connections

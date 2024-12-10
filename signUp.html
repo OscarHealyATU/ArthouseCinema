@@ -45,11 +45,14 @@
             
             <label for="submit"></label>
             <input type="submit" name="submit" id="submit" value="Sign up">
+            <div id="signUpResponse"></div>
         </form>
-        <div id="signUpResponse"></div>
+        
     </main>
 <script>
-    
+     function reload(){
+        document.location.assign('login.html');
+    }
     // updates page without full reload
      $(document).ready(function () {
         $('#userSignUp').on('submit', function (event) {
@@ -69,6 +72,8 @@
             });
         });
     });
+
+   
 </script>
 
 </body>

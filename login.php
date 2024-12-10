@@ -22,11 +22,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION["username"] = $username_in;
             echo "<script>document.location.assign('index.php')</script>";
         }else { 
-            echo "Incorrect Password";
+            echo "Incorrect Username or Password";
             
         }
     } else{
-        echo "no username like that exists";
+        echo "Incorrect Username or Password";
     }
 }
 ?>
