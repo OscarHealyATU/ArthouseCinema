@@ -93,3 +93,42 @@
   border-bottom: solid 2px var(--color2);
 
 }
+.table_card {
+  color: var(--offwhite);
+  background-color: var(--color1);
+  border: solid 3px var(--color3);
+  aspect-ratio: 1/1;
+}
+
+.table_card img { 
+  width: 100%;
+  margin-bottom: -5px;
+  
+}
+.table_card h3 {
+  text-align: center;
+  color: var(--color3);
+  background-color: var(--offwhite);
+  padding: 20px 0 15px;
+  border-bottom: dashed 2px var(--color3);
+}
+.table_card{
+  color: var(--offwhite);
+  
+}
+p{
+  padding: 15px;
+}
+.card_table {
+  width: 80%;
+}
+.release{
+  float: right;
+  padding: 0 .5em;
+  opacity: .7;
+}
+.genre{
+  float: left;
+  padding: 0 .5em;
+  opacity: .7;
+}
