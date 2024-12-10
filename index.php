@@ -113,9 +113,11 @@
                         if ($cardcounter == 3) {
                             echo "<tr>";
                         }
+                        // prints out the img urls so that i can insert them into the database
+                        // echo "img/".rawurlencode($row["title"])."<br> ";
                         echo "<td>
                         <div class='table_card'>
-                            <img src='img/" . rawurlencode($row["title"]) . "' alt='picture of  " . $row["title"] . "' onerror=\"this.src='img/noMovie.jpg';\">
+                            <img src='" . $row["film_url"]. "' alt='picture of  " . $row["title"] . "' onerror=\"this.src='img/noMovie.jpg';\">
                             <h3>" . $row["title"] . "</h3>
                             <p>" . $row["director"] . "     
                              <span class='release'>" . $row["release_year"] . "</span><br>
