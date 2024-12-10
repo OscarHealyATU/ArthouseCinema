@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/namedElementStyles.css">
     <link rel="stylesheet" href="styles/troubleshootStyle.css">
+    <link rel="stylesheet" href="styles/slideShow.css">
     <?php require 'connectToDB.php';
     session_start(); ?>
     <title>Home</title>
@@ -45,32 +46,62 @@
     <main>
         <!-- slide show made with help from w3shools carousel tutorial -->
         <!-- https://www.w3schools.com/howto/howto_js_slideshow.asp -->
-        <div class="slideshowContainer temporary">
+        <div class="slideshowContainer">
             <div class="slides fade">
                 <div class="noText">1 / 3</div>
-                <img src="" alt="" srcset="">
-                <div class="captionText"></div>
+                <img src="img/The-Grand-Budapest-Hotel-banner" style="width:100%;" onerror="this.src='img/noMovie.jpg';">
+                <div class="captionText">The Grand Budapest Hotel banner</div>
             </div>
             <div class="slides fade">
                 <div class="noText">2 / 3</div>
-                <img src="" alt="" srcset="">
+                <img src="img/eraserhead-banner" style="width:100%;" onerror="this.src='img/noMovie.jpg';">
                 <div class="captionText"></div>
             </div>
             <div class="slides fade">
                 <div class="noText">3 / 3</div>
-                <img src="" alt="" srcset="">
+                <img src="img/seventhseal-banner.jpg" style="width:100%;" onerror="this.src='img/noMovie.jpg';">
                 <div class="captionText"></div>
             </div>
 
-        </div>
-        <script>
+            <a class="prev" onclick="plusSlides(-1)"><img src="img/asset_back_arrow" alt="prev_image"></a>
+            <a class="next" onclick="plusSlides(1)"><img src="img/asset_next_arrow" alt="next_image"></a>
 
+        </div>
+
+        <script>
+            let slideIndex = 1;
+            showSlides(slideIndex);
+            
+            function plusSlides(x) {
+                showSlides(slideIndex += x);
+            }
+            function currentSlide(x) {
+                showSlides(slideIndex = x);
+            }
+            function showSlides(x) {
+                let i;
+                let slides = document.getElementsByClassName("slides");
+                let dots = document.getElementsByClassName("dots");
+                if (x > slides.length) { slideIndex = 1 }
+                if (x < 1) { slideIndex = slides.length }
+
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                
+            }
         </script>
         <table class='card_table'>
             <tr>
                 <th colspan="3"> Movies on Show</th>
             </tr>
-            
+
             <tr>
                 <?php
 
@@ -84,19 +115,19 @@
                         }
                         echo "<td>
                         <div class='table_card'>
-                            <img src='img/" . rawurlencode($row["title"]) . "' alt='picture of  " . $row["title"] ."' onerror=\"this.src='img/noMovie.jpg';\">
+                            <img src='img/" . rawurlencode($row["title"]) . "' alt='picture of  " . $row["title"] . "' onerror=\"this.src='img/noMovie.jpg';\">
                             <h3>" . $row["title"] . "</h3>
                             <p>" . $row["director"] . "     
-                             <span class='release'>" . $row["release_year"] . "</span></p>
-                            <p><span class='genre'>" . $row["genre"] . "</span></p>
-                            <p>" . $row["description"] . "</p></div>
+                             <span class='release'>" . $row["release_year"] . "</span><br>
+                             <span class='genre'>" . $row["genre"] . "</span></p>
+                            <p class='descripion'>" . $row["description"] . "</p></div>
                         </div></td>";
                         $cardcounter++;
                         if ($cardcounter == 3) {
                             echo "</tr>";
                             $cardcounter = 0;
                         }
-                        
+
 
                     }
                 } else {

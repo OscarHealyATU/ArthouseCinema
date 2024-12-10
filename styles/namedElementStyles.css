@@ -98,6 +98,7 @@
   background-color: var(--color1);
   border: solid 3px var(--color3);
   aspect-ratio: 1/1;
+  
 }
 
 .table_card img { 
@@ -114,11 +115,8 @@
 }
 .table_card{
   color: var(--offwhite);
-  
 }
-p{
-  padding: 15px;
-}
+
 .card_table {
   width: 80%;
 }
@@ -128,7 +126,15 @@ p{
   opacity: .7;
 }
 .genre{
-  float: left;
   padding: 0 .5em;
+  color: var(--color3); 
   opacity: .7;
+}
+.descripion{
+  margin-top: 1em;
+  background-color: var(--offwhite);
+  color: var(--color3);
+  height: 120px;
+  max-height: 120px;
+  overflow-y: scroll;
 }
