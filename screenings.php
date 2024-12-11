@@ -10,7 +10,7 @@
     <?php require 'connectToDB.php';
     session_start();
 
-    $film_id = "1";
+    
     // sql queries for lists at top of page
     // movie, date & time, & film  screen (location)
     $sql_film_title = "select distinct title, film_id from films";
@@ -147,7 +147,8 @@
     <script>
         function filmDetails(chosenMovie){
         //   alert("create session variabes for film details"); 
-        
+        window.location.href = `filmDetails.php?${"film_id="+chosenMovie}`;
+
         }
         function updateListings() {
             var selectedFilm = document.getElementById("movieSelection").value.split(". ", 2);

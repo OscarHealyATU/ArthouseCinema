@@ -55,7 +55,7 @@
         <div id="listScreenings"></div>
         <table class='card_table'>
             <tr>
-                <th colspan="3"> Movies on Show</th>
+                <th colspan="4"> Movies on Show</th>
             </tr>
 
             <tr>
@@ -66,7 +66,7 @@
                 $cardcounter = 0;
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        if ($cardcounter == 3) {
+                        if ($cardcounter == 4) {
                             echo "<tr>";
                         }
                         // prints out the img urls so that i can insert them into the database
@@ -84,7 +84,7 @@
                             
                         </div></td>";
                         $cardcounter++;
-                        if ($cardcounter == 3) {
+                        if ($cardcounter == 4) {
                             echo "</tr>";
                             $cardcounter = 0;
                         }
