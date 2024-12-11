@@ -53,60 +53,51 @@
    
     <main>
         <div id="listScreenings"></div>
-        <table>
-            <tr><th colspan="4" class="tableheadingAlt">All Screenings</th></tr>
+        <table class='card_table'>
             <tr>
-                <th colspan="2">Film</th>
-                <th>Screen</th>
-                <th>time</th>
-
+                <th colspan="3"> Movies on Show</th>
             </tr>
+
             <tr>
                 <?php
-                // sql query for main table results
-                
-                $sql_film_times = " select screenings.*, films.title as title  
-                                        from screenings 
-                                        join films on screenings.film_id = films.film_id
-                                        
-                                        order by title";
-                $result = $conn->query($sql_film_times); // continues where ever table is
-                
+
+                $sql = "select * from merchandise";
+                $result = $conn->query($sql);
+                $cardcounter = 0;
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td class='tdButton'><a onclick='filmDetails(".$row['film_id'].")'>select</a></td>";
-                        echo "<td>"
-                            . $row["title"] . "</td><td>"
-                            . $row["location"] . "</td><td>"
-                            . date_format(date_create($row["screening_date"]), "l H:i (M d)") . "</td>";
+                        if ($cardcounter == 3) {
+                            echo "<tr>";
+                        }
+                        // prints out the img urls so that i can insert them into the database
+                         echo "img/". $row["image_url"]     ."<br> ";
+                        echo "<td>
+                        <div class='table_card'>
+                            <img src='img/" . $row["image_url"] . "' alt='picture of  " . $row["name"] . "' onerror=\"this.src='img/noMovie.jpg';\">
+                            <h3>" . $row["name"] . "</h3>
+                            <p> €" . $row["price"] . "   
+                            <br>
+                             
+                            <p class='descripion'>" . $row["description"] . "</p>
+                            <span class='genre'>Add to Cart</span></p>
                             
-                        echo "</tr>";
+                            
+                        </div></td>";
+                        $cardcounter++;
+                        if ($cardcounter == 3) {
+                            echo "</tr>";
+                            $cardcounter = 0;
+                        }
+
+
                     }
                 } else {
                     echo '<div class="db_error"><p>No records found.</p></div>';
                 }
-                // fills select drop downs 
-                function FillOptions($select_result, $db_item)
-                {
-                    if ($select_result->num_rows > 0) {
-                        while ($row = $select_result->fetch_assoc()) {
-                            if ($db_item === "title") {
-                                echo "<option>" . $row["film_id"] . ". " . $row[$db_item] . "</option>";
-                            } else if ($db_item === "screening_date") {
-                                 echo "<option value='$row[$db_item]'>" . date_format(date_create($row[$db_item]), " H:i D d") . "</option>";
-                            } else if ($db_item === "location") {
-                                echo "<option>" . $row["location"] . "</option>";
-                            }
-                        }
-                    } else {
-                        echo '<option class = "db_error">Something went wrong</option>';
-                    }
-                }
-
 
                 // Close the connection
                 $conn->close();
+
                 ?>
             </tr>
         </table>

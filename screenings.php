@@ -101,7 +101,7 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td class='tdButton'><a onclick='filmDetails(".$row['film_id'].")'>select</a></td>";
+                        echo "<td class='tdButton'><a onclick='filmDetails(".$row['film_id'].")'>Book </a></td>";
                         echo "<td>"
                             . $row["title"] . "</td><td>"
                             . $row["location"] . "</td><td>"
