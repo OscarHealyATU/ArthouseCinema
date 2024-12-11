@@ -80,18 +80,19 @@
     <main>
         <div id="listScreenings"></div>
         <table>
-            <tr><th colspan="4" class="tableheadingAlt">All Screenings</th></tr>
+            <tr><th colspan="6" class="tableheadingAlt">All Screenings</th></tr>
             <tr>
-                <th colspan="2">Film</th>
-                <th>Screen</th>
-                <th>time</th>
+                <th colspan="1">Film</th>
+                <th colspan="1">Screen</th>
+                <th colspan="4">time</th>
+                
 
             </tr>
             <tr>
                 <?php
                 // sql query for main table results
                 
-                $sql_film_times = " select screenings.*, films.title as title  
+                $sql_film_times = " select screenings.*, films.title as title, films.film_url as url  
                                         from screenings 
                                         join films on screenings.film_id = films.film_id
                                         
@@ -105,8 +106,9 @@
                         echo "<td>"
                             . $row["title"] . "</td><td>"
                             . $row["location"] . "</td><td>"
-                            . date_format(date_create($row["screening_date"]), "l H:i (M d)") . "</td>";
-                            
+                            . date_format(date_create($row["screening_date"]), "l H:i (M d)") . "</td0>";
+                            echo "<td>";
+                        echo "<td><img src='". $row["url"] . "' class='thumbnail'></td>";   
                         echo "</tr>";
                     }
                 } else {
@@ -144,7 +146,8 @@
     </footer>
     <script>
         function filmDetails(chosenMovie){
-          alert("create session variabes for film details");
+        //   alert("create session variabes for film details"); 
+        
         }
         function updateListings() {
             var selectedFilm = document.getElementById("movieSelection").value.split(". ", 2);

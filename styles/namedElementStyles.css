@@ -81,7 +81,9 @@
   border-bottom: 2px solid var(--light);
   border-top: 3px solid var(--color2);
 }
-
+.thumbnail{
+  width: 50px;
+}
 
 #profileName {
   color: var(--color1);

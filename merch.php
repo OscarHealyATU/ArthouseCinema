@@ -70,7 +70,7 @@
                             echo "<tr>";
                         }
                         // prints out the img urls so that i can insert them into the database
-                         echo "img/". $row["image_url"]     ."<br> ";
+                        //  echo "img/". $row["image_url"]     ."<br> ";
                         echo "<td>
                         <div class='table_card'>
                             <img src='img/" . $row["image_url"] . "' alt='picture of  " . $row["name"] . "' onerror=\"this.src='img/noMovie.jpg';\">
