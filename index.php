@@ -20,8 +20,7 @@
     <nav class="navbar">
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="tickets.php"><strong>Buy</strong> Tickets</a></li>
-            <li><a href="screenings.php">Screenings</a></li>
+            <li><a href="screenings.php"><strong>Buy</strong> Tickets</a></li>
             <li><a href="merch.php">Merchandise</li>
 
             <?php

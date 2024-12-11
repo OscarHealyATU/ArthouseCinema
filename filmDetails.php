@@ -61,13 +61,15 @@
 
 
         <?php
-
+        
         $sql = "select films.*, screenings.* from films
                  join screenings on screenings.film_id = films.film_id
                 where films.film_id =". $_GET['film_id'];
 
-        $result = $conn->query($sql);
+        $sql2 = "select * from screenings where film_id = ". $_GET['film_id'];
 
+        $result = $conn->query($sql);
+        $result2 = $conn->query($sql2);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
 
@@ -81,19 +83,17 @@
                             <p> Director: " . $row["director"] . "   
                             <br><br>
                             <span class='genre'>" . $row["genre"] . "</span></p> 
-                            <p class='descripion'>" . $row["description"] . "</p>
-                            <span class='genre'><button class='book_ticket'>Book Ticket</span></p>
+                            <p class='descripion'>" . $row["description"] . "</p>";
                             
-                            
-                        </div></td>";
-                         
-
-
-
-
             }
         } else {
             echo '<div class="db_error"><p>No records found.</p></div>';
+        }
+        if ($result2->num_rows>0) {
+            while ($row = $result2->fetch_assoc()) {
+                echo "<p class='descripion'> viewing: " . $row["screening_date"] . "</p>";
+            }
+            echo "<span class='genre'><button class='book_ticket'>Book Ticket</span></p></div></td>";
         }
 
         // Close the connection

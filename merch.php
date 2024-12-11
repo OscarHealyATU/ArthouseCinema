@@ -28,14 +28,14 @@
 
 <body>
     <a href="index.php" id="logo">
-        <h1>Arthouse Cinema</h1>
+    <h1>Silverstrand Screen</h1>
     </a>
     <nav class="navbar">
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="tickets.php"><strong>Buy</strong> Tickets</a></li>
-            <li><a href="screenings.php">Screenings</a></li>
+            <li><a href="screenings.php"><strong>Buy</strong> Tickets</a></li>
             <li><a href="merch.php">Merchandise</li>
+
             <?php
             if (isset($_SESSION['username'])) {
 
