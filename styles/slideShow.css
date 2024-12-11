@@ -21,7 +21,7 @@ main {
     vertical-align: middle;
     max-height: 600px;
     object-fit: cover;
-    overflow: scroll;
+    
 }
 
 .slideshowContainer {
