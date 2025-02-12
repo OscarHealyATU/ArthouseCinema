@@ -93,7 +93,7 @@
             while ($row = $result2->fetch_assoc()) {
                 echo "<p class='descripion'> viewing: " . $row["screening_date"] . "</p>";
             }
-            echo "<span class='genre'><button class='book_ticket'>Book Ticket</span></p></div></td>";
+            echo "<span class='genre'><button class='book_ticket'>Book Ticket</button></span></p></div></td>";
         }
 
         // Close the connection
@@ -104,7 +104,7 @@
     </table>
     <footer>
         <div>
-            <img src="img/DALL·E-The-Silverstrand-Screen" alt="" id="footimg">
+            <img src="img/DALL·E-The-Silverstrand-Screen" alt="DALL·E genereated view of silver strand beach with ai generated cinema house, road is real but photoshopped in" id="footimg">
         </div>
         <div>
             <br><br>
