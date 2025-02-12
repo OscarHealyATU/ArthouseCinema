@@ -1,5 +1,5 @@
 <?php
-require 'connectToDB.php';
+require 'cliplib/connectToDB.php';
 session_start();
 
 

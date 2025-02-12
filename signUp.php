@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usernameExists = false; 
 
     // Database connection
-    require "connectToDB.php";
+    require "cliplib/connectToDB.php";
     $sql = "SELECT username, email FROM Users WHERE username=? or email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username_in, $email_in);
