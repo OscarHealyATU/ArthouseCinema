@@ -20,7 +20,6 @@
 
     </nav>
     <main>
-
       <div class="temporary">
         <h2>Welcome Oscar</h2>
         <img src="account/profile.png" alt="profile picture" srcset="">
@@ -31,8 +30,6 @@
         <input type="text" name="location" id="" value="Galway">
         
       </div>  
-
-      
     </main>
     <!-- footer -->
     <!-- <?php include 'cliplib/footer.php' ?> -->

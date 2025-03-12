@@ -1,5 +1,4 @@
-<?php
-require 'connectToDB.php';
+<?php require 'clipLib/connectToDB.php';
 // values from screenings.php
 $selectedFilm = $_POST['titleValue'];
 $selectedTime = $_POST['timeValue'];

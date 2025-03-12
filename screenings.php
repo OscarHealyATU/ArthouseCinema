@@ -10,7 +10,7 @@
     <?php require 'clipLib/connectToDB.php';
     session_start();
 
-    
+
     // sql queries for lists at top of page
     // movie, date & time, & film  screen (location)
     $sql_film_title = "select distinct title, film_id from films";
@@ -27,7 +27,7 @@
 </head>
 
 <body>
-<?php include 'cliplib/navigation.php';?>
+    <?php include 'cliplib/navigation.php'; ?>
     <nav class="navbar" id="screeningBar">
         <ul>
             <li>
@@ -58,13 +58,13 @@
     <main>
         <div id="listScreenings"></div>
         <table>
-            <tr><th colspan="6" class="tableheadingAlt">All Screenings</th></tr>
+            <tr>
+                <th colspan="6" class="tableheadingAlt">All Screenings</th>
+            </tr>
             <tr>
                 <th colspan="1">Film</th>
                 <th colspan="1">Screen</th>
                 <th colspan="4">time</th>
-                
-
             </tr>
             <tr>
                 <?php
@@ -72,21 +72,20 @@
                 
                 $sql_film_times = " select screenings.*, films.title as title, films.film_url as url  
                                         from screenings 
-                                        join films on screenings.film_id = films.film_id
-                                        
+                                        join films on screenings.film_id = films.film_id 
                                         order by title";
                 $result = $conn->query($sql_film_times); // continues where ever table is
                 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td class='tdButton'><a onclick='filmDetails(".$row['film_id'].")'>Book </a></td>";
+                        echo "<td class='tdButton'><a onclick='filmDetails(" . $row['film_id'] . ",".$row["screening_date"].")'>Book </a></td>";
                         echo "<td>"
                             . $row["title"] . "</td><td>"
                             . $row["location"] . "</td><td>"
                             . date_format(date_create($row["screening_date"]), "l H:i (M d)") . "</td0>";
-                            echo "<td>";
-                        echo "<td><img src='". $row["url"] . "' class='thumbnail'></td>";   
+                        echo "<td>";
+                        echo "<td><img src='" . $row["url"] . "' class='thumbnail'></td>";
                         echo "</tr>";
                     }
                 } else {
@@ -100,7 +99,7 @@
                             if ($db_item === "title") {
                                 echo "<option>" . $row["film_id"] . ". " . $row[$db_item] . "</option>";
                             } else if ($db_item === "screening_date") {
-                                 echo "<option value='$row[$db_item]'>" . date_format(date_create($row[$db_item]), " H:i D d") . "</option>";
+                                echo "<option value='$row[$db_item]'>" . date_format(date_create($row[$db_item]), " H:i D d") . "</option>";
                             } else if ($db_item === "location") {
                                 echo "<option>" . $row["location"] . "</option>";
                             }
@@ -109,22 +108,25 @@
                         echo '<option class = "db_error">Something went wrong</option>';
                     }
                 }
-
-
                 // Close the connection
                 $conn->close();
                 ?>
             </tr>
         </table>
 
-
     </main>
     <!-- footer -->
     <?php include 'clipLib/footer.php' ?>
     <script>
-        function filmDetails(chosenMovie){
-        //   alert("create session variabes for film details"); 
-        window.location.href = `filmDetails.php?${"film_id="+chosenMovie}`;
+        function filmDetails(chosenMovie, chosenDate) {
+            
+            const params = new URLSearchParams({
+                film_id: chosenMovie,
+                screening_date: chosenDate
+            });
+            window.location.href = `filmDetails.php?${params}`;
+
+
 
         }
         function updateListings() {
@@ -145,7 +147,7 @@
             xmlhttp.send("titleValue=" + selectedFilm[0] + "&timeValue=" + selectedTime + "&screenValue=" + selectedScreen);
         }
 
-        
+
     </script>
 </body>
 

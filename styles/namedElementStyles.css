@@ -105,9 +105,6 @@
 }
 #footimg{
   width: 400px;
-
-
-  
 }
 
 .table_card img { 
@@ -148,4 +145,52 @@
   height: 120px;
   max-height: 120px;
   overflow-y: scroll;
+}
+/* setting up grid-template-areas css for movie_details.php  */
+/* 
+title
+film url (img)
+genre
+director
+description
+
+    listing_image 
+    listing_header
+    listing_time
+    listing_description
+
+*/
+.movie_details_card{
+  
+  padding: 10px;
+  margin: 20px auto;
+  max-height: 300px;
+  max-width: 70dvw;
+  display: flex;
+}
+.movie_details_card h2{
+  text-align: center;
+  margin: auto;
+}
+.movie_details_card img{
+  max-height: inherit;
+  
+}
+.movie_details_card div{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.movie_details_card div p{
+border-bottom: solid 2px var(--color1);
+}
+.buy_ticket button{
+  background-color: var(--color1);
+  color: white;
+  border: 2px solid var(--color3);
+}
+.buy_ticket button:hover{
+  background-color: var(--color3);
+  color: white;
+  border: 2px solid var(--color3);
 }
