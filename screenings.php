@@ -77,17 +77,24 @@
                 $result = $conn->query($sql_film_times); // continues where ever table is
                 
                 if ($result->num_rows > 0) {
+                    $table = "";
                     while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td class='tdButton'><a onclick='filmDetails(" . $row['film_id'] . ",".$row["screening_date"].")'>Book </a></td>";
-                        echo "<td>"
-                            . $row["title"] . "</td><td>"
-                            . $row["location"] . "</td><td>"
-                            . date_format(date_create($row["screening_date"]), "l H:i (M d)") . "</td0>";
-                        echo "<td>";
-                        echo "<td><img src='" . $row["url"] . "' class='thumbnail'></td>";
-                        echo "</tr>";
+                        $table .= "
+                        <tr>
+                            <td class='tdButton'>
+                                <a onclick='filmDetails(" . $row['film_id'] . "," . $row['screening_date'] . ")'>Book </a>
+                            </td>
+                            <td>" . $row["title"] . "</td>
+                            <td>" . $row["location"] . "</td>
+                            <td>" . date_format(
+                            date_create($row["screening_date"]),
+                            "l H:i (M d)") . "</td>
+                            <td>
+                                <img src='" . $row['url'] . "' class='thumbnail'>
+                            </td>
+                        </tr>";
                     }
+                    echo $table;
                 } else {
                     echo '<div class="db_error"><p>No records found.</p></div>';
                 }
@@ -119,7 +126,7 @@
     <?php include 'clipLib/footer.php' ?>
     <script>
         function filmDetails(chosenMovie, chosenDate) {
-            
+
             const params = new URLSearchParams({
                 film_id: chosenMovie,
                 screening_date: chosenDate
