@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +14,7 @@
   --light: #ddd;
   --offwhite: #eee;
   --background_color: #111;
-  --warning: #900;
+  --test: #900;
   background-color: var(--light);
 }
 

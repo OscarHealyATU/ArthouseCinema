@@ -51,7 +51,7 @@
                         //  echo "img/". $row["image_url"]     ."<br> ";
                         echo "<td>
                         <div class='table_card'>
-                            <img src='img/" . $row["image_url"] . "' alt='picture of  " . $row["name"] . "' onerror=\"this.src='img/noMovie.jpg';\">
+                            <img src='img/merchandise/" . $row["image_url"] . "' alt='picture of  " . $row["name"] . "' onerror=\"this.src='img/noMovie.jpg';\">
                             <h3>" . $row["name"] . "</h3>
                             <p> €" . $row["price"] . "   
                             <br>
