@@ -17,10 +17,19 @@
     $sql_film_date = "select distinct screening_date, film_id from screenings order by screening_date";
     $sql_film_location = "select distinct location from screenings";
 
+    function prepFilm($conn,$sql_film_var): mysqli_result
+    {
+        $stmt = $conn->prepare($sql_film_var);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result;
+    }
+
     // get results from database
-    $film_title_result = $conn->query($sql_film_title);
-    $film_date_result = $conn->query($sql_film_date);
-    $film_location_result = $conn->query($sql_film_location);
+    $film_title_result = prepFilm($conn,$sql_film_title);
+    $film_date_result =  prepFilm($conn,$sql_film_date);
+    $film_location_result = prepFilm($conn,$sql_film_location);
 
     ?>
     <title>Screen Times</title>
@@ -87,10 +96,11 @@
                             <td>" . $row["title"] . "</td>
                             <td>" . $row["location"] . "</td>
                             <td>" . date_format(
-                            date_create($row["screening_date"]),
-                            "l H:i (M d)") . "</td>
+                                date_create($row["screening_date"]),
+                                "l H:i (M d)"
+                            ) . "</td>
                             <td>
-                                <img src='" . $row['url'] . "' class='thumbnail'>
+                                <img src='img/movie_posters " . $row['url'] . "' class='thumbnail'>
                             </td>
                         </tr>";
                     }
@@ -132,10 +142,8 @@
                 screening_date: chosenDate
             });
             window.location.href = `filmDetails.php?${params}`;
-
-
-
         }
+
         function updateListings() {
             var selectedFilm = document.getElementById("movieSelection").value.split(". ", 2);
             var selectedTime = document.getElementById("timeSelection").value;
@@ -143,15 +151,27 @@
 
             console.log(selectedFilm[0] + " " + selectedTime + " " + selectedScreen + " ");
 
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", "screeningsResponse.php", true);
-            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("listScreenings").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.send("titleValue=" + selectedFilm[0] + "&timeValue=" + selectedTime + "&screenValue=" + selectedScreen);
+            fetch("response/screeningsResponse.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlemcoded"
+                },
+                body: FormData.toString()
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+
+                    }
+                })
+                .then(data => {
+                    document.getElementById("listScreenings").innerHTML = FormData;
+                })
+                .catch(error => {
+                    console.error("fetch error:", error);
+                    document.getElementById("listScreenings").innerHTML = "<p class = 'db_error'>Something went wrong2</p>";
+                    document.getElementById("listScreenings").innerHTML = error;
+                })
         }
 
 
