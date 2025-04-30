@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/namedElementStyles.css">
     <link rel="stylesheet" href="styles/troubleshootStyle.css">
+    <link rel="icon" type="image/x-icon" href="/img/style_assets/favicon.png">
     <?php require 'clipLib/connectToDB.php';
     session_start();
 
