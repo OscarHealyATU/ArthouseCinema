@@ -25,7 +25,7 @@
         </ul>
     </nav>
     <main>
-        <form id="userLogin">
+        <form id="userLogin" method="post" onsubmit="login(event)">
             <div class="loginOrSignup">
                 <h2>Login Page</h2>
                 <a href="index.php">
@@ -46,31 +46,37 @@
 
             <label for="submit"></label>
             <input type="submit" name="submit" id="submit" value="Log in">
-            <div id="loginResponse"></div>  
+            <div id="loginResponse"></div>
         </form>
-        
+
     </main>
     <script>
         // updates page without full reload
+        function login(event) {
+            event.preventDefault();
+            let formData = new FormData(document.getElementById("userLogin"));
 
-        $(document).ready(function () {
-            $('#userLogin').on('submit', function (event) {
-                // prevents form from loading page traditionally
-                event.preventDefault();
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'login.php',
-                    data: $(this).serialize(),
-                    success: function (response) {
-                        $('#loginResponse').html(response); // Update the response div with the result
-                    },
-                    error: function (xhr, status, error) {
-                        $('#loginResponse').html('Error: ' + error); // Display error message
-                    }
-                });
+            fetch("response/login.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById("loginResponse").innerText = data.message;
+                    setTimeout(() => {
+                        window.location.href = "index.php";
+                    }, 2000);
+                } else {
+                    document.getElementById("loginResponse").innerText = data.message;
+                }
+            })
+            .catch(error => {
+                console.error("error: ", error);
             });
-        });
+        
+
+        }
     </script>
 
 </body>
