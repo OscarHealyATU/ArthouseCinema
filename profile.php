@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="styles/namedElementStyles.css">
     <link rel="stylesheet" href="styles/troubleshootStyle.css">
     <link rel="stylesheet" href="styles/slideShow.css">
-    <?php require 'clipLib/connectToDB.php';
+    <?php require 'components/connectToDB.php';
     session_start(); ?>
     <title>Home</title>
 </head>
 
 <body>
     <!-- navigation -->
-    <?php include 'cliplib/navigation.php'; ?>
+    <?php include 'components/navigation.php'; ?>
     <nav class="navbar" id="screeningBar">
 
     </nav>
@@ -32,7 +32,7 @@
       </div>  
     </main>
     <!-- footer -->
-    <!-- <?php include 'cliplib/footer.php' ?> -->
+    <!-- <?php include 'components/footer.php' ?> -->
 </body>
 
 </html>

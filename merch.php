@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/namedElementStyles.css">
     <link rel="stylesheet" href="styles/troubleshootStyle.css">
-    <?php require 'cliplib/connectToDB.php';
+    <?php require 'components/connectToDB.php';
     session_start();
 
     $film_id = "1";
@@ -27,7 +27,7 @@
 </head>
 
 <body>
-<?php include 'cliplib/navigation.php';?>
+<?php include 'components/navigation.php';?>
    
     <main>
         <div id="listScreenings"></div>
@@ -83,7 +83,7 @@
 
     </main>
     <!-- footer -->
-    <?php include 'cliplib/footer.php' ?>
+    <?php include 'components/footer.php' ?>
     <script>
         function filmDetails(chosenMovie){
           alert("create session variabes for film details");
