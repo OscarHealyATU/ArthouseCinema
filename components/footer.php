@@ -1,7 +1,7 @@
 <footer>
         <div>
-            <img src="img/DALL·E-The-Silverstrand-Screen" alt="" id="footimg">
-        </div>
+            <img src="../img/style_assets/DALL·E-The-Silverstrand-Screen" alt="" id="footimg">
+      
         <div>
             <br><br>
             <p>About The Silverstrand Screen</p>

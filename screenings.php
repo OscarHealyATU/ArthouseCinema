@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles/namedElementStyles.css">
     <link rel="stylesheet" href="styles/troubleshootStyle.css">
     <link rel="icon" type="image/x-icon" href="/img/style_assets/favicon.png">
-    <?php require 'clipLib/connectToDB.php';
+    <?php require 'components/connectToDB.php';
     session_start();
 
 
@@ -37,7 +37,7 @@
 </head>
 
 <body>
-    <?php include 'cliplib/navigation.php'; ?>
+    <?php include 'components/navigation.php'; ?>
     <nav class="navbar" id="screeningBar">
         <ul>
             <li>
@@ -101,7 +101,7 @@
                                 "l H:i (M d)"
                             ) . "</td>
                             <td>
-                                <img src='img/movie_posters " . $row['url'] . "' class='thumbnail'>
+                                <img src='img/movie_posters/" . $row['url'] . "' class='thumbnail'>
                             </td>
                         </tr>";
                     }
@@ -134,7 +134,7 @@
 
     </main>
     <!-- footer -->
-    <?php include 'clipLib/footer.php' ?>
+    <?php include 'components/footer.php' ?>
     <script>
         function filmDetails(chosenMovie, chosenDate) {
 

@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/namedElementStyles.css">
+    <link rel="stylesheet" href="styles/slideShow.css">
     <link rel="stylesheet" href="styles/troubleshootStyle.css">
     <!-- <link rel="stylesheet" href="styles/slideShow.css"> -->
     <link rel="icon" type="image/x-icon" href="/img/style_assets/favicon.png">
-    <?php require 'clipLib/connectToDB.php';
+    <?php require 'components/connectToDB.php';
     session_start(); ?>
     <title>Home</title>
 </head>
 
 <body>
     <!-- navigation -->
-   <?php include 'cliplib/navigation.php';?>
+   <?php include 'components/navigation.php';?>
     <nav class="navbar" id="screeningBar"></nav>
     <main>
         <!-- slide show made with help from w3shools carousel tutorial -->
@@ -24,23 +25,23 @@
         <div class="slideshowContainer">
             <div class="slides fade">
                 <div class="noText">1 / 3</div>
-                <img src="img/The-Grand-Budapest-Hotel-banner" style="width:100%;"
+                <img src="img/style_assets/The-Grand-Budapest-Hotel-banner" style="width:100%;"
                     onerror="this.src='img/noMovie.jpg';">
                 <div class="captionText">The Grand Budapest Hotel banner</div>
             </div>
             <div class="slides fade">
                 <div class="noText">2 / 3</div>
-                <img src="img/eraserhead-banner" style="width:100%;" onerror="this.src='img/noMovie.jpg';">
+                <img src="img/style_assets/eraserhead-banner" style="width:100%;" onerror="this.src='img/noMovie.jpg';">
                 <div class="captionText"></div>
             </div>
             <div class="slides fade">
                 <div class="noText">3 / 3</div>
-                <img src="img/seventhseal-banner.jpg" style="width:100%;" onerror="this.src='img/noMovie.jpg';">
+                <img src="img/style_assets/seventhseal-banner.jpg" style="width:100%;" onerror="this.src='img/noMovie.jpg';">
                 <div class="captionText"></div>
             </div>
 
-            <a class="prev" onclick="plusSlides(-1)"><img src="img/asset_back_arrow" alt="prev_image"></a>
-            <a class="next" onclick="plusSlides(1)"><img src="img/asset_next_arrow" alt="next_image"></a>
+            <a class="prev" onclick="plusSlides(-1)"><img src="img/style_assets/asset_back_arrow" alt="prev_image"></a>
+            <a class="next" onclick="plusSlides(1)"><img src="img/style_assets/asset_next_arrow" alt="next_image"></a>
 
         </div>
         
@@ -63,7 +64,7 @@
                         // echo "img/".rawurlencode($row["title"])."<br> ";
                         echo "<td>
                         <div class='table_card'>
-                            <img src='" . $row["film_url"] . "' alt='picture of  " . $row["title"] . "' onerror=\"this.src='img/noMovie.jpg';\">
+                            <img src='img/movie_posters/" . $row["film_url"] . "' alt='picture of  " . $row["title"] . "' onerror=\"this.src='img/noMovie.jpg';\">
                             <h3>" . $row["title"] . "</h3>
                             <p>" . $row["director"] . "     
                              <span class='release'>" . $row["release_year"] . "</span><br>
@@ -92,7 +93,7 @@
     </main>
 
     <!-- footer -->
-    <?php include 'cliplib/footer.php' ?>
+    <?php include 'components/footer.php' ?>
 
 </body>
 
