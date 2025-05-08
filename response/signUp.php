@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Database connection
-    require "../cliplib/connectToDB.php";
+    require "../components/connectToDB.php";
     // Get the form data
     // hashed password
     $password_in = password_hash($_POST['passwordInput'], PASSWORD_DEFAULT);
