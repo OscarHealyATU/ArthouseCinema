@@ -30,7 +30,7 @@
 
     </nav>
     <main>
-      <div class="temporary">
+      <form id="userLogin">
         <h2>Welcome 
         <?php if (isset($_SESSION['username'])) {
           echo $_SESSION['username'];
@@ -48,7 +48,7 @@
         <label for="firstName">Location:</label>
         <input type="text" name="location" id="" value="<?php echo htmlspecialchars($user['location']);?>" disabled>
         
-      </div>  
+      </form>  
     </main>
     <!-- footer -->
     <!-- <?php include 'components/footer.php' ?> -->
