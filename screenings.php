@@ -92,7 +92,7 @@
                         $table .= "
                         <tr>
                             <td class='tdButton'>
-                                <a onclick='filmDetails(" . $row['film_id'] . "," . $row['screening_date'] . ")'>Book </a>
+                                <a onclick='filmDetails(" . $row['film_id'] . ",\"" . $row['screening_date'] . "\")'>Book </a>
                             </td>
                             <td>" . $row["title"] . "</td>
                             <td>" . $row["location"] . "</td>

@@ -28,7 +28,7 @@
     }
     $whereSQL = "";
     if (count($whereClauses)>0) {
-        $whereSQL = "where ".implode(" or ",$whereClauses);
+        $whereSQL = "where ".implode(" and ",$whereClauses);
     }
 
     $sql= "select screenings.*, films.title as title
