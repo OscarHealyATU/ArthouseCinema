@@ -55,7 +55,7 @@
     while($row = mysqli_fetch_assoc($result)) {
         
     echo "<tr>";
-    echo "<td class='tdButton'><a onclick='filmDetails(".$row['film_id'].")'>Book </a></td>";
+    echo "<td class='tdButton'><a onclick='filmDetails(".$row['film_id'].",\"".$row['screening_date']."\")'>Book </a></td>";
     echo "<td>" . $row['title'] . "</td>";
     echo "<td>" .  date_format(date_create($row["screening_date"]), "l H:i (M d)") . "</td>";
     echo "<td>" . $row['location'] . "</td>";

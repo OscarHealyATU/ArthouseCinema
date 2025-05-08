@@ -143,6 +143,12 @@
   height: 120px;
   overflow-y: scroll;
 }
+.drop_shadow{
+  box-shadow: 10px 10px 10px var(--color1);
+  margin: 20px;
+  width: 250px;
+  height: 100%;
+}
 /* setting up grid-template-areas css for movie_details.php  */
 /* 
 title
@@ -161,7 +167,8 @@ description
   
   padding: 10px;
   margin: 20px auto;
-  max-height: 300px;
+  max-height: 500px;
+  min-height: 350px;
   max-width: 70dvw;
   display: flex;
 }

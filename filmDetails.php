@@ -30,9 +30,10 @@
     <nav class="navbar" id="screeningBar">
     </nav>   
         <?php
-        $sql = "select films.*, screenings.* from films
-                 join screenings on screenings.film_id = films.film_id
-                where films.film_id =" . $_GET['film_id'];
+        $sql = "select films.*, screenings.screening_date 
+                from films
+                join screenings on screenings.film_id = films.film_id
+                where films.film_id =" . $_GET['film_id'] . " and screenings.screening_date = '". $_GET['screening_date'] ."'";
     
         $result = $conn->query($sql);
        
@@ -43,7 +44,7 @@
                                
                 echo '
                 <div class="movie_details_card">
-                    <img src=" '.$row["film_url"].' " alt=" '.$alt_text.' " onerror="this.src="img/noMovie.jpg" " ;>
+                    <img class="drop_shadow" src="img/movie_posters/'.$row["film_url"].'" alt=" '.$alt_text.' " onerror=" this.src=\'img/style_assets/noMovie.jpg\' " ;>
                     <h2 class="listing_header" >'.$row["title"].'</h2>
                     <div>
                         <p class="listing_genre">'.$row["genre"].'</p>
@@ -68,3 +69,4 @@
 </body>
 
 </html>
+
