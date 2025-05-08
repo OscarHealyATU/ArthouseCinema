@@ -6,7 +6,8 @@
 -- Generation Time: May 08, 2025 at 11:16 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
-
+create database if not EXISTS silverstrand_screen;
+use silverstrand_screen;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
