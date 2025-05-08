@@ -62,15 +62,17 @@
                         }
                         // prints out the img urls so that i can insert them into the database
                         // echo "img/".rawurlencode($row["title"])."<br> ";
-                        echo "<td>
-                        <div class='table_card'>
-                            <img src='img/movie_posters/" . $row["film_url"] . "' alt='picture of  " . $row["title"] . "' onerror=\"this.src='img/noMovie.jpg';\">
-                            <h3>" . $row["title"] . "</h3>
-                            <p>" . $row["director"] . "     
-                             <span class='release'>" . $row["release_year"] . "</span><br>
-                             <span class='genre'>" . $row["genre"] . "</span></p>
-                            <p class='descripion'>" . $row["description"] . "</p></div>
-                        </div></td>";
+                        echo "
+                        <td>
+                            <div class='table_card'>
+                                <img src='img/movie_posters/" . $row["film_url"] . "' alt='picture of  " . $row["title"] . "' onerror=\"this.src='img/noMovie.jpg';\">
+                                <h3>" . $row["title"] . "</h3>
+                                <p>" . $row["director"] . "     
+                                <span class='release'>" . $row["release_year"] . "</span><br>
+                                <span class='genre'>" . $row["genre"] . "</span></p>
+                                <p class='descripion'>" . $row["description"] . "</p>
+                            </div>
+                        </td>";
                         $cardcounter++;
                         if ($cardcounter == 3) {
                             echo "</tr>";

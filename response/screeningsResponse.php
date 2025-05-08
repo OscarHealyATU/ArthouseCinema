@@ -1,9 +1,10 @@
-    <?php require '../clipLib/connectToDB.php';
+    <?php require '../components/connectToDB.php';
     // values from screenings.php 
     // use null if not set 
-    $selectedFilm = $_POST['titleValue'] ?? null;
-    $selectedTime = $_POST['timeValue'] ?? null;
-    $selectedScreen = $_POST['screenValue'] ?? null;
+
+    $selectedFilm = $_POST['film_id'] ?? null;
+    $selectedTime = $_POST['screening_date'] ?? null;
+    $selectedScreen = $_POST['location'] ?? null;
     // declare empty strings for constructing sql statement
     $whereClauses = [];
 
@@ -27,7 +28,7 @@
     }
     $whereSQL = "";
     if (count($whereClauses)>0) {
-        $whereSQL = "where ".implode("and",$whereClauses);
+        $whereSQL = "where ".implode(" or ",$whereClauses);
     }
 
     $sql= "select screenings.*, films.title as title
@@ -51,7 +52,7 @@
     <th>Screen</th>
     </tr>";
     if ($result && $result->num_rows > 0) {
-    while($row = mysqli_fetch_array($result)) {
+    while($row = mysqli_fetch_assoc($result)) {
         
     echo "<tr>";
     echo "<td class='tdButton'><a onclick='filmDetails(".$row['film_id'].")'>Book </a></td>";

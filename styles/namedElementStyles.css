@@ -96,23 +96,25 @@
   border-bottom: solid 2px var(--color2);
 
 }
-.table_card {
-  color: var(--offwhite);
-  background-color: var(--color1);
-  border: solid 3px var(--color3);
-  aspect-ratio: 1/1;
-  
-}
 #footimg{
   width: 400px;
 }
+.table_card {
+  color: var(--offwhite);
 
+  background-color: var(--color1);
+  border: solid 3px var(--color3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 520px;
+  box-sizing: border-box;
+}
 .table_card img { 
   width: 100%;
-  margin-bottom: -5px;
-  max-height: 450px;
+  aspect-ratio: 2/3;
   object-fit: cover;
-  
+  flex-shrink: 0;
 }
 .table_card h3 {
   text-align: center;
@@ -120,9 +122,6 @@
   background-color: var(--offwhite);
   padding: 20px 0 15px;
   border-bottom: dashed 2px var(--color3);
-}
-.table_card{
-  color: var(--offwhite);
 }
 
 .card_table {
@@ -139,11 +138,9 @@
   opacity: .7;
 }
 .descripion{
-  margin-top: 1em;
   background-color: var(--offwhite);
   color: var(--color3);
   height: 120px;
-  max-height: 120px;
   overflow-y: scroll;
 }
 /* setting up grid-template-areas css for movie_details.php  */

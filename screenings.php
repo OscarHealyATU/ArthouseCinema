@@ -18,19 +18,19 @@
     $sql_film_date = "select distinct screening_date, film_id from screenings order by screening_date";
     $sql_film_location = "select distinct location from screenings";
 
-    function prepFilm($conn,$sql_film_var): mysqli_result
+    function prepFilm($conn, $sql_film_var): mysqli_result
     {
         $stmt = $conn->prepare($sql_film_var);
         $stmt->execute();
         $result = $stmt->get_result();
-        $stmt->close();
+        $stmt->close();    
         return $result;
     }
 
     // get results from database
-    $film_title_result = prepFilm($conn,$sql_film_title);
-    $film_date_result =  prepFilm($conn,$sql_film_date);
-    $film_location_result = prepFilm($conn,$sql_film_location);
+    $film_title_result = prepFilm($conn, $sql_film_title);
+    $film_date_result =  prepFilm($conn, $sql_film_date);
+    $film_location_result = prepFilm($conn, $sql_film_location);
 
     ?>
     <title>Screen Times</title>
@@ -79,13 +79,13 @@
             <tr>
                 <?php
                 // sql query for main table results
-                
+
                 $sql_film_times = " select screenings.*, films.title as title, films.film_url as url  
                                         from screenings 
                                         join films on screenings.film_id = films.film_id 
                                         order by title";
                 $result = $conn->query($sql_film_times); // continues where ever table is
-                
+
                 if ($result->num_rows > 0) {
                     $table = "";
                     while ($row = $result->fetch_assoc()) {
@@ -97,9 +97,9 @@
                             <td>" . $row["title"] . "</td>
                             <td>" . $row["location"] . "</td>
                             <td>" . date_format(
-                                date_create($row["screening_date"]),
-                                "l H:i (M d)"
-                            ) . "</td>
+                            date_create($row["screening_date"]),
+                            "l H:i (M d)"
+                        ) . "</td>
                             <td>
                                 <img src='img/movie_posters/" . $row['url'] . "' class='thumbnail'>
                             </td>
@@ -146,36 +146,39 @@
         }
 
         function updateListings() {
-            var selectedFilm = document.getElementById("movieSelection").value.split(". ", 2);
-            var selectedTime = document.getElementById("timeSelection").value;
-            var selectedScreen = document.getElementById("screenSelection").value;
+            const selectedFilm = document.getElementById("movieSelection").value.split(". ", 2);
+            const selectedTime = document.getElementById("timeSelection").value;
+            const selectedScreen = document.getElementById("screenSelection").value;           
+            const formData = new URLSearchParams();
 
-            console.log(selectedFilm[0] + " " + selectedTime + " " + selectedScreen + " ");
+            formData.append("film_id", selectedFilm[0]);
+            formData.append("screening_date", selectedTime);
+            formData.append("location", selectedScreen);
+            // form data log
+            console.log("form data: ", formData.toString());
 
             fetch("response/screeningsResponse.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlemcoded"
-                },
-                body: FormData.toString()
-            })
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: formData.toString()
+                })
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-
+                    if(!response.ok){
+                        throw new Error(`Http error: ${response.status}`);
                     }
+                    return response.text();
                 })
                 .then(data => {
-                    document.getElementById("listScreenings").innerHTML = FormData;
+                    document.getElementById("listScreenings").innerHTML = data;
                 })
                 .catch(error => {
                     console.error("fetch error:", error);
                     document.getElementById("listScreenings").innerHTML = "<p class = 'db_error'>Something went wrong2</p>";
-                    document.getElementById("listScreenings").innerHTML = error;
-                })
+                    
+                });
         }
-
-
     </script>
 </body>
 

@@ -23,11 +23,11 @@
       <div class="temporary">
         <h2>Welcome Oscar</h2>
         <img src="account/profile.png" alt="profile picture" srcset="">
-        <input type="text" name="firstName" id="" value="Oscar">
-        <input type="text" name="LastName" id="" value="Healy">
-        <input type="text" name="email" id="" value="oscar.healy101@gmail.com">
-        <input type="text" name="phone" id="" value="083 803 8985">
-        <input type="text" name="location" id="" value="Galway">
+        <input type="text" name="firstName" id="" value="Oscar" disabled>
+        <input type="text" name="LastName" id="" value="Healy" disabled>
+        <input type="text" name="email" id="" value="oscar.healy101@gmail.com" disabled>
+        <input type="text" name="phone" id="" value="083 803 8985" disabled>
+        <input type="text" name="location" id="" value="Galway" disabled>
         
       </div>  
     </main>
