@@ -1,5 +1,6 @@
 <?php
-    $servername = "frameworkproject";
+    // $servername = "frameworkproject"; // name of laptop project
+    $servername = "arthousecinema";
     $username = "root";
     $password = "";
     $dbname = "silverstrand_screen";
