@@ -27,7 +27,10 @@
 </head>
 
 <body>
-    <?php include 'components/navigation.php'; ?>
+    <?php 
+    include 'components/cartModal.php';
+    include 'components/navigation.php';
+      ?>
     <nav class="navbar" id="screeningBar">
     </nav>
     <form action="addToCart.php">
