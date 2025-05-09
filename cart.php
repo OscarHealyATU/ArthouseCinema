@@ -22,9 +22,11 @@
     .full_line{
         color: black;
     }
+   
 
 </style>
 <div id="cartContainer">
+    <button class="hide"></button>
     <h2>Cart</h2>
     <hr class="full_line">
     <strong>item 1: <span>$money</span></strong>
@@ -37,4 +39,5 @@
     <br><br><br><br><br><br>
     
     <button id="checkoutBtn">Checkout</button>
+    
 </div>
